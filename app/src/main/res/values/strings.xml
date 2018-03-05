@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Creol</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="description">Project Description</string>
+    <string name="duration">Project Duration</string>
+    <string name="requirements">Project Requirements</string>
+    <string name="name">Project Title</string>
+    <string name="category">Project Category</string>
+    <string name="create_project">Create Project</string>
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
+</resources>
