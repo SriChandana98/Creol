@@ -23,8 +23,6 @@
         android:layout_marginBottom="414dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="30dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,8 +45,6 @@
         android:layout_marginBottom="332dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="30dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +52,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <EditText
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description"
-            android:textColor="@color/black"
             android:inputType="textMultiLine"
-            android:id="@+id/description"
+            android:textColor="@color/black"
             android:textColorHint="@color/colorPrimary" />
     </android.support.design.widget.TextInputLayout>
 
@@ -72,8 +68,6 @@
         android:layout_marginBottom="250dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="30dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,8 +90,6 @@
         android:layout_marginBottom="166dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="30dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,8 +113,6 @@
         android:layout_marginBottom="85dp"
         android:layout_marginEnd="54dp"
         android:layout_marginStart="30dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
