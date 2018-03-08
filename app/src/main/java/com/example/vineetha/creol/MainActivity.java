@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.support.v4.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,AddProject.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,AddProject.OnFragmentInteractionListener,ProjectFeed.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +75,9 @@ public class MainActivity extends AppCompatActivity
         switch(id){
             case R.id.nav_add_proj:
                 fragment=new AddProject();
+                break;
+            case R.id.nav_proj_feed:
+                fragment=new ProjectFeed();
                 break;
         }
         if(fragment!=null){

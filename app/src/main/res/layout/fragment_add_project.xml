@@ -126,7 +126,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/create"
 
             android:layout_width="155dp"
             android:layout_height="33dp"
