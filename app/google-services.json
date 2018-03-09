@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "405351749670",
+    "firebase_url": "https://creol-196406.firebaseio.com",
+    "project_id": "creol-196406",
+    "storage_bucket": "creol-196406.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405351749670:android:d6ff2ba3f6b8fc9c",
+        "android_client_info": {
+          "package_name": "com.example.vineetha.creol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405351749670-1o6dai61iab8p0rnktu0brfjcs5r9eud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vineetha.creol",
+            "certificate_hash": "d6a72eea148fda1d8f69f8de0bf7a837b36ee2b9"
+          }
+        },
+        {
+          "client_id": "405351749670-lp24fr5ndfus4suhjfehfpmmhlmnvsbb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "405351749670-l4i6qhq9fue93hsjf4jauh2jskr9g6lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcuve3fG1NLd1b2Bv-Ng2Uvs1xNNOMnDc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405351749670-lp24fr5ndfus4suhjfehfpmmhlmnvsbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
