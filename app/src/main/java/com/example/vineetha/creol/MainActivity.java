@@ -1,5 +1,7 @@
 package com.example.vineetha.creol;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -79,6 +81,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_proj_feed:
                 fragment=new ProjectFeed();
                 break;
+            case R.id.nav_logout:
+                Intent intent=new Intent(MainActivity.this,LogoutActivity.class);
+                startActivity(intent);
+                finish();
+
         }
         if(fragment!=null){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();

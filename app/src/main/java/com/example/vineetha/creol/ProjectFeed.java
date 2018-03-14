@@ -2,21 +2,19 @@ package com.example.vineetha.creol;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 /**
@@ -33,7 +31,7 @@ public class ProjectFeed extends Fragment {
 
     RecyclerView recyclerView;
     CardAdapter adapter;
-    static int i = 3;
+    static int i = 0;
     String z = "";
     Boolean isSuccess = false;
 
@@ -103,6 +101,16 @@ public class ProjectFeed extends Fragment {
 
         adapter = new CardAdapter(getActivity(), cardList);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Log.e("err","error");
+                Intent intent = new Intent(getActivity(),ProjectScreen.class);
+                intent.putExtra("project-name", cardList.get(position).getPname());
+                intent.putExtra("project-description", cardList.get(position).getPdescription());
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 

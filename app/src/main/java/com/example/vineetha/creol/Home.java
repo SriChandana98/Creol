@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
@@ -38,6 +39,7 @@ public class Home extends AppCompatActivity {
     private final static int RC_SIGN_IN = 1;
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth.AuthStateListener mAuthListener;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +55,12 @@ public class Home extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                if(firebaseAuth.getCurrentUser() != null){
+                mAuth.getCurrentUser();
                     startActivity(new Intent (Home.this, Information.class));
                 }
 
-            }
-        };
 
+        };
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +101,7 @@ public class Home extends AppCompatActivity {
             if(result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+                Log.e("account",account.toString());
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately

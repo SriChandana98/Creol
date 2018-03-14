@@ -12,12 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.sql.Statement;
 
 public class Information extends AppCompatActivity {
     Button save;
     EditText email,name,college,skills,works;
     String eml,uname,clg,sk,wk;
+    FirebaseAuth mAuth;
+    String femail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +34,7 @@ public class Information extends AppCompatActivity {
         college=(EditText)findViewById(R.id.College);
         skills=(EditText)findViewById(R.id.Skills);
         works=(EditText)findViewById(R.id.Work);
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +42,7 @@ public class Information extends AppCompatActivity {
                 id.execute("");
             }
         });
+
     }
     public class InsertInfo extends AsyncTask<String,Void,String>
     {
