@@ -94,7 +94,7 @@ public class ProjectFeed extends Fragment {
             }
         } catch (Exception ex) {
             isSuccess = false;
-            z = "Exceptions";
+            z = "Exception occurred";
             Log.e("ERROR", ex.getMessage());
 
         }

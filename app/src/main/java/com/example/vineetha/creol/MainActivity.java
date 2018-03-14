@@ -19,25 +19,28 @@ import android.view.MenuItem;
 import android.support.v4.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,AddProject.OnFragmentInteractionListener,ProjectFeed.OnFragmentInteractionListener {
-
+        implements NavigationView.OnNavigationItemSelectedListener,AddProject.OnFragmentInteractionListener,ProjectFeed.OnFragmentInteractionListener,Profile.OnFragmentInteractionListener {
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+        Fragment fragment=new ProjectFeed();
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_main,fragment);
+        ft.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
+        toolbar.setTitle("Project Feed");
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
@@ -77,14 +80,21 @@ public class MainActivity extends AppCompatActivity
         switch(id){
             case R.id.nav_add_proj:
                 fragment=new AddProject();
+                toolbar.setTitle("Add Project");
                 break;
             case R.id.nav_proj_feed:
                 fragment=new ProjectFeed();
+                toolbar.setTitle("Project Feed");
                 break;
             case R.id.nav_logout:
                 Intent intent=new Intent(MainActivity.this,LogoutActivity.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.nav_profile:
+                fragment=new Profile();
+                toolbar.setTitle("Profile");
+                break;
 
         }
         if(fragment!=null){

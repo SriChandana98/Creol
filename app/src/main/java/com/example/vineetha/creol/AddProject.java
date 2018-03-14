@@ -51,7 +51,6 @@ public class AddProject extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static AddProject newInstance() {
         AddProject fragment = new AddProject();
-
         return fragment;
     }
 
@@ -134,7 +133,6 @@ public class AddProject extends Fragment {
             des = description.getText().toString().trim();
             cat = category.getText().toString().trim();
             req=requirements.getText().toString().trim();
-
         }
 
         @Override
@@ -162,7 +160,7 @@ public class AddProject extends Fragment {
                         z = "Error in connection with SQL server";
                     }else{
                         Statement stmt = con.createStatement();
-                        int flag = stmt.executeUpdate("insert into dbo.ProjectDetails values('','"+tit+"','"+des+"','"+req+"','"+dur+"','"+cat+"');");
+                        int flag = stmt.executeUpdate("insert into dbo.ProjectDetails values('"+Information.eml+"','"+tit+"','"+des+"','"+req+"','"+dur+"','"+cat+"');");
                         z = "successfull";
                         //Toast.makeText(InsertData.this,z,Toast.LENGTH_LONG).show();
                         isSuccess=true;

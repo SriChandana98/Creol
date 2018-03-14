@@ -21,9 +21,8 @@ import java.sql.Statement;
 public class Information extends AppCompatActivity {
     Button save;
     EditText email,name,college,skills,works;
-    String eml,uname,clg,sk,wk;
-    FirebaseAuth mAuth;
-    String femail;
+    String uname,clg,sk,wk;
+    public static String eml;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +33,6 @@ public class Information extends AppCompatActivity {
         college=(EditText)findViewById(R.id.College);
         skills=(EditText)findViewById(R.id.Skills);
         works=(EditText)findViewById(R.id.Work);
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
