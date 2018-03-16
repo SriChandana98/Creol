@@ -1,4 +1,4 @@
-package com.example.vineetha.creol;
+package com.wise.vineetha.creol;
 
 import org.junit.Test;
 

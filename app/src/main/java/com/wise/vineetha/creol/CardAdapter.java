@@ -1,4 +1,4 @@
-package com.example.vineetha.creol;
+package com.wise.vineetha.creol;
 
 /**
  * Created by vineetha on 08-03-2018.
@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.vineetha.creol.Card;
-import com.example.vineetha.creol.R;
 
 import java.util.ArrayList;
 import java.util.List;

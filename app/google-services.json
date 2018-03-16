@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:405351749670:android:d6ff2ba3f6b8fc9c",
         "android_client_info": {
-          "package_name": "com.example.vineetha.creol"
+          "package_name": "com.wise.vineetha.creol"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "405351749670-1o6dai61iab8p0rnktu0brfjcs5r9eud.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.vineetha.creol",
+            "package_name": "com.wise.vineetha.creol",
             "certificate_hash": "d6a72eea148fda1d8f69f8de0bf7a837b36ee2b9"
           }
         },

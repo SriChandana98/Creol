@@ -1,5 +1,7 @@
-package com.example.vineetha.creol;
+package com.wise.vineetha.creol;
 
+import android.support.v4.app.FragmentTransaction;
+import android.widget.Button;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,7 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,15 +21,12 @@ import java.sql.Statement;
 import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.content.SharedPreferences;
-import android.content.Context;
-import android.content.SharedPreferences.Editor;
 
 public class Profile extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    TextView n,cl,s,w;
-    //Button lout;
+    EditText e,n,cl,s,w;
+    Button lout,sv,edt;
     View rootView;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -53,11 +52,18 @@ public class Profile extends Fragment {
         String z="";
         Boolean isSuccess=false;
         rootView=inflater.inflate(R.layout.fragment_profile, container, false);
-        n=(TextView)rootView.findViewById(R.id.pname);
-        cl=(TextView)rootView.findViewById(R.id.pcollege);
-        s=(TextView)rootView.findViewById(R.id.pworks);
-        w=(TextView)rootView.findViewById(R.id.pskills);
-      //  lout=(Button)rootView.findViewById(R.id.logout);
+        n=(EditText) rootView.findViewById(R.id.pname);
+        cl=(EditText) rootView.findViewById(R.id.pcollege);
+        s=(EditText) rootView.findViewById(R.id.pskills);
+        w=(EditText) rootView.findViewById(R.id.pworks);
+        e=(EditText) rootView.findViewById(R.id.pemail);
+        lout=(Button)rootView.findViewById(R.id.logout);
+        edt=(Button)rootView.findViewById(R.id.edit);
+        sv=(Button)rootView.findViewById(R.id.save);
+        s.setEnabled(false);
+        n.setEnabled(false);
+        w.setEnabled(false);
+        cl.setEnabled(false);
         SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
         email=settings.getString("email",null);
         if(email.equals(null)) {
@@ -76,8 +82,9 @@ public class Profile extends Fragment {
                     while (rs.next()) {
                         n.setText(rs.getString(2));
                         cl.setText(rs.getString(3));
-                        s.setText(rs.getString(5));
-                        w.setText(rs.getString(4));
+                        s.setText(rs.getString(4));
+                        w.setText(rs.getString(5));
+                        e.setText(rs.getString(1));
                     }
                 }
             } catch (Exception ex) {
@@ -90,7 +97,7 @@ public class Profile extends Fragment {
         }
 
 
-        mAuth = FirebaseAuth.getInstance();
+       /* mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -102,12 +109,62 @@ public class Profile extends Fragment {
         };
 
 
-        /*lout.setOnClickListener(new View.OnClickListener() {
+        lout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
             }
         });*/
+       edt.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               sv.setVisibility(View.VISIBLE);
+               sv.setClickable(true);
+               n.setEnabled(true);
+               cl.setEnabled(true);
+               s.setEnabled(true);
+               w.setEnabled(true);
+           }
+       });
+       sv.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               String name=n.getText().toString().trim();
+               String clg=n.getText().toString().trim();
+               String skills=s.getText().toString().trim();
+               String works=w.getText().toString().trim();
+               Boolean isSuccess=false;
+               if(name.equals("")||clg.equals("")||skills.equals("")||works.equals(""))
+                   Toast.makeText(getActivity(),"fill all fields",Toast.LENGTH_LONG).show();
+               else
+               {
+                   try {
+                       java.sql.Connection con = DatabaseConnection.CONN();
+                       if (con == null) {
+                           Toast.makeText(getActivity(),"check internet connection",Toast.LENGTH_LONG).show();
+                       } else {
+                           String query = "update Information set username='"+name+"',clg='"+clg+"',skills='"+skills+"',works='"+works+"' where email='"+email+"'";
+                           Statement stmt = con.createStatement();
+                           stmt.executeUpdate(query);
+                           isSuccess=true;
+                       }
+                   } catch (Exception ex) {
+                       Log.e("ERROR", ex.getMessage());
+                       Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_LONG).show();
+                       isSuccess=false;
+
+                   }
+                   if(isSuccess){
+                       Fragment fragment=new Profile();
+                       FragmentTransaction ft=getFragmentManager().beginTransaction();
+                       ft.replace(R.id.content_main,fragment);
+                       ft.commit();
+                   }
+
+               }
+               sv.setClickable(false);
+           }
+       });
         return rootView;
     }
 

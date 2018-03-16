@@ -1,7 +1,5 @@
-package com.example.vineetha.creol;
+package com.wise.vineetha.creol;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
