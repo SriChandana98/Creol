@@ -76,8 +76,8 @@ public class Profile extends Fragment {
                     while (rs.next()) {
                         n.setText(rs.getString(2));
                         cl.setText(rs.getString(3));
-                        s.setText(rs.getString(4));
-                        w.setText(rs.getString(5));
+                        s.setText(rs.getString(5));
+                        w.setText(rs.getString(4));
                     }
                 }
             } catch (Exception ex) {
