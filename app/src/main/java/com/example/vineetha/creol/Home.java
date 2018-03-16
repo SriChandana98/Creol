@@ -33,6 +33,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.google.android.gms.common.SignInButton;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Home extends AppCompatActivity {
     SignInButton button;
     FirebaseAuth mAuth;
@@ -56,7 +59,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 mAuth.getCurrentUser();
-                    startActivity(new Intent (Home.this, Information.class));
+                startActivity(new Intent(Home.this,Information.class));
                 }
 
 

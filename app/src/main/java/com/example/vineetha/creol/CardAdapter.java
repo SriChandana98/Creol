@@ -25,20 +25,11 @@ import android.content.Intent;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
-    private Context mCtx;
-    private List<Card> cardList;
-    private OnItemClickListener mListener;
+    Context ctx;
+    ArrayList<Card> cardList;
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        mListener = listener;
-    }
-
-    public CardAdapter(Context mCtx, List<Card> cardList) {
-        this.mCtx = mCtx;
+    public CardAdapter(Context ctx, ArrayList<Card> cardList) {
+        this.ctx = ctx;
         this.cardList = cardList;
     }
 
@@ -46,9 +37,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        LayoutInflater inflater = LayoutInflater.from(ctx);
         View view = inflater.inflate(R.layout.list_layout, null);
-        CardViewHolder holder = new CardViewHolder(view, mListener);
+        CardViewHolder holder = new CardViewHolder(view,ctx,cardList);
         return holder;
     }
 
@@ -67,27 +58,29 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         return cardList.size();
     }
 
-    class CardViewHolder extends RecyclerView.ViewHolder {
+    class CardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textViewName , textViewDesc;
+        List<Card> cardList;
+        Context ctx;
 
-        public CardViewHolder(View itemView, final OnItemClickListener listener) {
+        public CardViewHolder(View itemView,Context ctx,ArrayList<Card> cardList) {
             super(itemView);
-
+            this.cardList=cardList;
+            this.ctx=ctx;
+            itemView.setOnClickListener(this);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewDesc = itemView.findViewById(R.id.textViewDesc);
+        }
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    if(listener != null) {
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+        @Override
+        public void onClick(View view) {
+            int position=getAdapterPosition();
+            Card card=this.cardList.get(position);
+            Intent intent=new Intent(this.ctx,Display.class);
+            intent.putExtra("title",card.getPname());
+            intent.putExtra("desc",card.getPdescription());
+            this.ctx.startActivity(intent);
         }
     }
 }

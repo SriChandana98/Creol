@@ -86,11 +86,6 @@ public class MainActivity extends AppCompatActivity
                 fragment=new ProjectFeed();
                 toolbar.setTitle("Project Feed");
                 break;
-            case R.id.nav_logout:
-                Intent intent=new Intent(MainActivity.this,LogoutActivity.class);
-                startActivity(intent);
-                finish();
-                break;
             case R.id.nav_profile:
                 fragment=new Profile();
                 toolbar.setTitle("Profile");

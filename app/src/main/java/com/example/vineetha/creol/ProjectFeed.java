@@ -101,7 +101,7 @@ public class ProjectFeed extends Fragment {
 
         adapter = new CardAdapter(getActivity(), cardList);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
+        /*adapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Log.e("err","error");
@@ -110,7 +110,7 @@ public class ProjectFeed extends Fragment {
                 intent.putExtra("project-description", cardList.get(position).getPdescription());
                 startActivity(intent);
             }
-        });
+        });*/
         return rootView;
     }
 

@@ -17,12 +17,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.Statement;
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.content.SharedPreferences.Editor;
 
 public class Information extends AppCompatActivity {
     Button save;
     EditText email,name,college,skills,works;
     String uname,clg,sk,wk;
-    public static String eml;
+    public static String eml=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,6 @@ public class Information extends AppCompatActivity {
                 id.execute("");
             }
         });
-
     }
     public class InsertInfo extends AsyncTask<String,Void,String>
     {
@@ -94,6 +96,7 @@ public class Information extends AppCompatActivity {
 
                 }
             }
+
             return z;
         }
     }

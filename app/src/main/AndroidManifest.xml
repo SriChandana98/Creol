@@ -23,7 +23,6 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Display" />
-        <activity android:name=".LogoutActivity" />
         <activity android:name=".ProjectScreen"></activity>
     </application>
 

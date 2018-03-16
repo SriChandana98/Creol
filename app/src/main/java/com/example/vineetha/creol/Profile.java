@@ -8,18 +8,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
+import com.google.firebase.auth.FirebaseAuth;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 public class Profile extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     TextView n,cl,s,w;
+    Button lout;
     View rootView;
+    FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
     public Profile(){
 
     }
@@ -45,6 +51,7 @@ public class Profile extends Fragment {
         cl=(TextView)rootView.findViewById(R.id.pcollege);
         s=(TextView)rootView.findViewById(R.id.pworks);
         w=(TextView)rootView.findViewById(R.id.pskills);
+        lout=(Button)rootView.findViewById(R.id.logout);
         try {
             java.sql.Connection con = DatabaseConnection.CONN();
             if (con == null) {
@@ -67,6 +74,25 @@ public class Profile extends Fragment {
 
         }
         Toast.makeText(getActivity(),z,Toast.LENGTH_LONG).show();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() == null ){
+                    startActivity(new Intent(getActivity(), Home.class));
+                }
+            }
+        };
+
+
+        lout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+            }
+        });
         return rootView;
     }
 
