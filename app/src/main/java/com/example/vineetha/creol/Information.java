@@ -25,7 +25,9 @@ public class Information extends AppCompatActivity {
     Button save;
     EditText email,name,college,skills,works;
     String uname,clg,sk,wk;
-    public static String eml=null;
+    String eml;
+    public static final String PREFS_NAME = "EMAIL";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,10 @@ public class Information extends AppCompatActivity {
             clg = college.getText().toString().trim();
             sk= skills.getText().toString().trim();
             wk = works.getText().toString().trim();
+            SharedPreferences  settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            Editor editor=settings.edit();
+            editor.putString("email",eml);
+            editor.commit();
 
         }
 

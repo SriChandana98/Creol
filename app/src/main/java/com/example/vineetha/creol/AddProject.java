@@ -1,10 +1,12 @@
 package com.example.vineetha.creol;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ public class AddProject extends Fragment {
     public Button create;
     EditText title,description,requirements,duration,category;
     String tit,des,dur,cat,req;
+    String email;
 
     public AddProject() {
         // Required empty public constructor
@@ -71,6 +74,14 @@ public class AddProject extends Fragment {
         description=(EditText)RootView.findViewById(R.id.description);
         category=(EditText)RootView.findViewById(R.id.category);
         requirements=(EditText)RootView.findViewById(R.id.requirements);
+        SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
+        email=settings.getString("email",null);
+        if(email.equals(null)) {
+            Toast.makeText(getActivity(),"cannot access email",Toast.LENGTH_LONG).show();
+        }
+        else {
+
+        }
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +171,7 @@ public class AddProject extends Fragment {
                         z = "Error in connection with SQL server";
                     }else{
                         Statement stmt = con.createStatement();
-                        int flag = stmt.executeUpdate("insert into dbo.ProjectDetails values('"+Information.eml+"','"+tit+"','"+des+"','"+req+"','"+dur+"','"+cat+"');");
+                        int flag = stmt.executeUpdate("insert into dbo.ProjectDetails values('"+email+"','"+tit+"','"+des+"','"+req+"','"+dur+"','"+cat+"');");
                         z = "successfull";
                         //Toast.makeText(InsertData.this,z,Toast.LENGTH_LONG).show();
                         isSuccess=true;

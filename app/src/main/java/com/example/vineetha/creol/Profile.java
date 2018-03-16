@@ -1,6 +1,7 @@
 package com.example.vineetha.creol;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,14 +19,19 @@ import java.sql.Statement;
 import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.content.SharedPreferences.Editor;
+
 public class Profile extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     TextView n,cl,s,w;
-    Button lout;
+    //Button lout;
     View rootView;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
+    String email;
     public Profile(){
 
     }
@@ -51,29 +57,38 @@ public class Profile extends Fragment {
         cl=(TextView)rootView.findViewById(R.id.pcollege);
         s=(TextView)rootView.findViewById(R.id.pworks);
         w=(TextView)rootView.findViewById(R.id.pskills);
-        lout=(Button)rootView.findViewById(R.id.logout);
-        try {
-            java.sql.Connection con = DatabaseConnection.CONN();
-            if (con == null) {
-                z = "Error in connection with SQL server";
-            } else{
-                String query = "select * from dbo.Information where email='"+Information.eml+"';";
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) {
-                    n.setText(rs.getString(2));
-                    cl.setText(rs.getString(3));
-                    s.setText(rs.getString(4));
-                    w.setText(rs.getString(5));
-                }
-            }
-        } catch (Exception ex) {
-            isSuccess = false;
-            z = "Exceptions";
-            Log.e("ERROR", ex.getMessage());
+      //  lout=(Button)rootView.findViewById(R.id.logout);
+        SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
+        email=settings.getString("email",null);
+        if(email.equals(null)) {
 
         }
-        Toast.makeText(getActivity(),z,Toast.LENGTH_LONG).show();
+        else {
+
+            try {
+                java.sql.Connection con = DatabaseConnection.CONN();
+                if (con == null) {
+                    z = "Error in connection with SQL server";
+                } else {
+                    String query = "select * from dbo.Information where email='" + email + "';";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    while (rs.next()) {
+                        n.setText(rs.getString(2));
+                        cl.setText(rs.getString(3));
+                        s.setText(rs.getString(4));
+                        w.setText(rs.getString(5));
+                    }
+                }
+            } catch (Exception ex) {
+                isSuccess = false;
+                z = "Exceptions";
+                Log.e("ERROR", ex.getMessage());
+                Toast.makeText(getActivity(),z,Toast.LENGTH_LONG).show();
+
+            }
+        }
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -87,12 +102,12 @@ public class Profile extends Fragment {
         };
 
 
-        lout.setOnClickListener(new View.OnClickListener() {
+        /*lout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
             }
-        });
+        });*/
         return rootView;
     }
 
