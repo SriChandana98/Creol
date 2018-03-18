@@ -14,6 +14,10 @@
             android:icon="@drawable/ic_add_to_photos_black_24dp"
             android:title="Add Projects" />
         <item
+            android:id="@+id/nav_your_proj"
+            android:title="Your Projects"
+            android:icon="@drawable/ic_folder_special_black_24dp"/>
+        <item
             android:id="@+id/nav_profile"
             android:title="Profile"
             android:icon="@drawable/ic_person_black_24dp"/>

@@ -12,7 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import android.widget.Toast;
 
 import java.sql.ResultSet;
@@ -21,6 +25,7 @@ import java.sql.Statement;
 import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import  com.google.android.gms.common.api.GoogleApiClient;
 
 public class Profile extends Fragment {
 
@@ -31,6 +36,9 @@ public class Profile extends Fragment {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
     String email;
+    GoogleSignInClient mGoogleSignInClient;
+    GoogleApiClient mGoogleApiClient;
+
     public Profile(){
 
     }
@@ -49,6 +57,11 @@ public class Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+
         String z="";
         Boolean isSuccess=false;
         rootView=inflater.inflate(R.layout.fragment_profile, container, false);
@@ -57,7 +70,7 @@ public class Profile extends Fragment {
         s=(EditText) rootView.findViewById(R.id.pskills);
         w=(EditText) rootView.findViewById(R.id.pworks);
         e=(EditText) rootView.findViewById(R.id.pemail);
-        lout=(Button)rootView.findViewById(R.id.logout);
+        //lout=(Button)rootView.findViewById(R.id.logout);
         edt=(Button)rootView.findViewById(R.id.edit);
         sv=(Button)rootView.findViewById(R.id.save);
         s.setEnabled(false);
@@ -97,7 +110,7 @@ public class Profile extends Fragment {
         }
 
 
-       /* mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -109,10 +122,10 @@ public class Profile extends Fragment {
         };
 
 
-        lout.setOnClickListener(new View.OnClickListener() {
+        /*lout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
+                signOut();
             }
         });*/
        edt.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +186,15 @@ public class Profile extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(getActivity(),Home.class));
+                    }
+                });
     }
 
     @Override

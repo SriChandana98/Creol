@@ -50,6 +50,7 @@ public class Home extends AppCompatActivity {
                     .requestEmail()
                     .build();
             mAuth = FirebaseAuth.getInstance();
+
             mAuthListener = new FirebaseAuth.AuthStateListener() {
                 @Override
                 public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

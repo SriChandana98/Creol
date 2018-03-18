@@ -1,6 +1,7 @@
 package com.wise.vineetha.creol;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -144,10 +145,7 @@ public class AddProject extends Fragment {
         @Override
         protected void onPostExecute(String r) {
             if(isSuccess) {
-                Fragment fragment = new ProjectFeed();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, fragment);
-                ft.commit();
+               startActivity(new Intent(getActivity(),MainActivity.class));
             }
             else
                 Toast.makeText(getActivity(),z,Toast.LENGTH_LONG).show();

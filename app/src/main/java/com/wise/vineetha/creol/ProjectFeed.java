@@ -1,6 +1,8 @@
 package com.wise.vineetha.creol;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,9 +32,11 @@ public class ProjectFeed extends Fragment {
 
     RecyclerView recyclerView;
     CardAdapter adapter;
-    static int i = 0;
+    int i = 0;
     String z = "";
     Boolean isSuccess = false;
+    String query;
+    int idx=0;
 
     ArrayList<Card> cardList;
     private OnFragmentInteractionListener mListener;
@@ -48,19 +52,17 @@ public class ProjectFeed extends Fragment {
      * @return A new instance of fragment ProjectFeed.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProjectFeed newInstance() {
+    public static ProjectFeed newInstance(int i) {
         ProjectFeed fragment = new ProjectFeed();
         Bundle args = new Bundle();
+        args.putInt("val",i);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        //These I have used for static comment them when connecting to the db
-
 
     }
 
@@ -69,7 +71,11 @@ public class ProjectFeed extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_project_feed, container, false);
         cardList = new ArrayList<>();
+        try {
+            idx = getArguments().getInt("val");
+        }catch(Exception e){
 
+        }
         recyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -79,7 +85,12 @@ public class ProjectFeed extends Fragment {
             if (con == null) {
                 z = "Error in connection with SQL server";
             } else {
-                String query = "select * from dbo.ProjectDetails;";
+                SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
+                String email=settings.getString("email",null);
+                if(idx==1 && email!=null)
+                    query="select * from dbo.ProjectDetails where email='"+email+"';";
+                else
+                    query = "select * from dbo.ProjectDetails;";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
@@ -100,16 +111,17 @@ public class ProjectFeed extends Fragment {
 
         adapter = new CardAdapter(getActivity(), cardList);
         recyclerView.setAdapter(adapter);
-        /*adapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Log.e("err","error");
-                Intent intent = new Intent(getActivity(),ProjectScreen.class);
+
+                Intent intent = new Intent(getActivity(), Display.class);
                 intent.putExtra("project-name", cardList.get(position).getPname());
                 intent.putExtra("project-description", cardList.get(position).getPdescription());
+                intent.putExtra("idx",idx);
                 startActivity(intent);
             }
-        });*/
+        });
         return rootView;
     }
 

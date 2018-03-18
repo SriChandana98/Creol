@@ -1,5 +1,7 @@
 package com.wise.vineetha.creol;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -79,11 +81,16 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_proj_feed:
                 fragment=new ProjectFeed();
-                toolbar.setTitle("Project Feed");
+                toolbar.setTitle("Project feed");
                 break;
+
             case R.id.nav_profile:
                 fragment=new Profile();
                 toolbar.setTitle("Profile");
+                break;
+            case R.id.nav_your_proj:
+                fragment=ProjectFeed.newInstance(1);
+                toolbar.setTitle("Your Projects");
                 break;
 
         }
