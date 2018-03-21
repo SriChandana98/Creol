@@ -52,7 +52,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Ok"
-                    android:id="@+id/ok"/>
+                    android:id="@+id/ok"
+                    android:background="@color/bg"/>
             </LinearLayout>
 
                 <TextView
@@ -65,7 +66,9 @@
                     android:text="Get Started"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:id="@+id/getstarted"/>
+                    android:id="@+id/getstarted"
+                    android:background="@color/green"
+                    android:textColor="@color/white"/>
 
 
         </LinearLayout>
