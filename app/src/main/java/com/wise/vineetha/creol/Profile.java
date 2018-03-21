@@ -80,7 +80,7 @@ public class Profile extends Fragment {
         SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
         email=settings.getString("email",null);
         if(email.equals(null)) {
-
+            Toast.makeText(getActivity(),"email is null",Toast.LENGTH_SHORT).show();
         }
         else {
 

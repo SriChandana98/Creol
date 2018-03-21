@@ -33,33 +33,34 @@ public class Home extends AppCompatActivity {
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth.AuthStateListener mAuthListener;
     String email;
+    SharedPreferences s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         button=(SignInButton) findViewById(R.id.signin);
-        SharedPreferences settings=this.getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
-        if(settings!=null)
-            email=settings.getString("email",null);
-        else
-            email=null;
 
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
                     .build();
             mAuth = FirebaseAuth.getInstance();
+            s=getSharedPreferences(Information.PREFS_NAME,MODE_PRIVATE);
 
             mAuthListener = new FirebaseAuth.AuthStateListener() {
                 @Override
                 public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                     mAuth.getCurrentUser();
-                    if(email==null)
-                        startActivity(new Intent(Home.this, Information.class));
-                    else if (!email.equals(null))
-                        startActivity(new Intent(Home.this,MainActivity.class));
-
+                    if(s==null)
+                        startActivity(new Intent(Home.this, User.class));
+                    else{
+                        email=s.getString("email",null);
+                        if(email==null)
+                            startActivity(new Intent(Home.this,User.class));
+                        else
+                            startActivity(new Intent(Home.this,MainActivity.class));
+                    }
                 }
 
 
