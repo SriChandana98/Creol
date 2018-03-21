@@ -6,12 +6,17 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -37,6 +42,8 @@ public class ProjectFeed extends Fragment {
     Boolean isSuccess = false;
     String query;
     int idx=0;
+    String email;
+    TextView np;
 
     ArrayList<Card> cardList;
     private OnFragmentInteractionListener mListener;
@@ -71,6 +78,9 @@ public class ProjectFeed extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_project_feed, container, false);
         cardList = new ArrayList<>();
+        np=(TextView)rootView.findViewById(R.id.not_av);
+        np.setVisibility(View.INVISIBLE);
+        int flag=0;
         try {
             idx = getArguments().getInt("val");
         }catch(Exception e){
@@ -86,13 +96,16 @@ public class ProjectFeed extends Fragment {
                 z = "Error in connection with SQL server";
             } else {
                 SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
-                String email=settings.getString("email",null);
+                email=settings.getString("email",null);
                 if(idx==1 && email!=null)
                     query="select * from dbo.ProjectDetails where email='"+email+"';";
                 else
                     query = "select * from dbo.ProjectDetails;";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
+                if(!rs.next())
+                    flag=1;
+                rs=stmt.executeQuery(query);
                 while (rs.next()) {
                     String name = rs.getString(2);
                     String des = rs.getString(3);
@@ -115,13 +128,20 @@ public class ProjectFeed extends Fragment {
             @Override
             public void onItemClick(int position) {
 
-                Intent intent = new Intent(getActivity(), Display.class);
+                Intent intent;
+                if(idx==1 && email!=null)
+                    intent= new Intent(getActivity(), Display.class);
+                else
+                    intent=new Intent(getActivity(),ProjectScreen.class);
                 intent.putExtra("project-name", cardList.get(position).getPname());
                 intent.putExtra("project-description", cardList.get(position).getPdescription());
                 intent.putExtra("idx",idx);
                 startActivity(intent);
             }
         });
+        if(flag==1)
+           np.setVisibility(View.VISIBLE);
+
         return rootView;
     }
 

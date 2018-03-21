@@ -1,7 +1,5 @@
 package com.wise.vineetha.creol;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

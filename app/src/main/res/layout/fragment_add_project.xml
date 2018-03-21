@@ -33,26 +33,22 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout2"
-
             android:layout_width="300dp"
-            android:layout_height="53dp"
-            android:layout_marginBottom="327dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp"
             android:layout_marginEnd="54dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:layout_constraintVertical_bias="0.172">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <EditText
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/description"
-                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textColorHint="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
@@ -65,11 +61,9 @@
             android:layout_marginBottom="245dp"
             android:layout_marginEnd="54dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintStart_toStartOf="parent">
 
             <EditText
                 android:id="@+id/duration"
@@ -108,10 +102,10 @@
             android:id="@+id/textInputLayout5"
 
             android:layout_width="300dp"
-            android:layout_height="54dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="54dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
@@ -121,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/category"
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textColorHint="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>

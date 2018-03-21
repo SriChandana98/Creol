@@ -8,6 +8,7 @@ import android.widget.TextView;
 public class ProjectScreen extends AppCompatActivity {
 
     private static final String TAG;
+    TextView details;
 
     static {
         TAG = "MyActivity";
@@ -31,9 +32,9 @@ public class ProjectScreen extends AppCompatActivity {
     }
 
     private void setIntent(String pname, String pdesc) {
-        TextView name = (TextView) findViewById(R.id.project_name);
-        TextView description = (TextView) findViewById(R.id.project_description);
-        name.setText(pname);
-        description.setText(pdesc);
+        details = (TextView) findViewById(R.id.pdetails);
+        details.setText(pname);
+        details.append("\n");
+        details.append(pdesc);
     }
 }
