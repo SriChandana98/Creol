@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg6"
     tools:context="com.wise.vineetha.creol.ProjectFeed">
 
     <android.support.v7.widget.RecyclerView
@@ -25,7 +26,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="238dp"
             android:text="No projects available !"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:id="@+id/not_av"
             app:layout_constraintBottom_toBottomOf="parent"

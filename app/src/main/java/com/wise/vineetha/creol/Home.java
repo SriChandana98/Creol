@@ -41,48 +41,54 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         button=(SignInButton) findViewById(R.id.signin);
 
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.default_web_client_id))
-                    .requestEmail()
-                    .build();
-            mAuth = FirebaseAuth.getInstance();
-            s=getSharedPreferences(Information.PREFS_NAME,MODE_PRIVATE);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mAuth = FirebaseAuth.getInstance();
+        s=getSharedPreferences(Information.PREFS_NAME,MODE_PRIVATE);
 
-            mAuthListener = new FirebaseAuth.AuthStateListener() {
-                @Override
-                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                    mAuth.getCurrentUser();
-                    if(s==null)
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                mAuth.getCurrentUser();
+                if(s==null) {
+
+                    startActivity(new Intent(Home.this, User.class));
+                }
+                else{
+                    email=s.getString("email",null);
+                    if(email==null) {
+
                         startActivity(new Intent(Home.this, User.class));
-                    else{
-                        email=s.getString("email",null);
-                        if(email==null)
-                            startActivity(new Intent(Home.this,User.class));
-                        else
-                            startActivity(new Intent(Home.this,MainActivity.class));
+                    }
+                    else {
+
+                        startActivity(new Intent(Home.this, MainActivity.class));
                     }
                 }
+            }
 
 
-            };
+        };
 
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    signIn();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
 
-                }
-            });
+            }
+        });
 
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .enableAutoManage(this /*Fragment Activity */, new GoogleApiClient.OnConnectionFailedListener() {
-                        @Override
-                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                            Toast.makeText(Home.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                    .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /*Fragment Activity */, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        Toast.makeText(Home.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
     }
 
     @Override

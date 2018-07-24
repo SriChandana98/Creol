@@ -15,6 +15,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
+
 import java.sql.Statement;
 
 
@@ -30,8 +33,8 @@ public class AddProject extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
-    public Button create;
-    EditText title,description,requirements,duration,category;
+    public BootstrapButton create;
+    BootstrapEditText title,description,requirements,duration,category;
     String tit,des,dur,cat,req;
     String email;
 
@@ -63,12 +66,12 @@ public class AddProject extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View RootView= inflater.inflate(R.layout.fragment_add_project, container, false);
-        create=(Button) RootView.findViewById(R.id.create);
-        title=(EditText) RootView.findViewById(R.id.title);
-        duration=(EditText)RootView.findViewById(R.id.duration);
-        description=(EditText)RootView.findViewById(R.id.description);
-        category=(EditText)RootView.findViewById(R.id.category);
-        requirements=(EditText)RootView.findViewById(R.id.requirements);
+        create=(BootstrapButton) RootView.findViewById(R.id.button);
+        title=(BootstrapEditText) RootView.findViewById(R.id.title);
+        duration=(BootstrapEditText)RootView.findViewById(R.id.duration);
+        description=(BootstrapEditText)RootView.findViewById(R.id.description);
+        category=(BootstrapEditText)RootView.findViewById(R.id.category);
+        requirements=(BootstrapEditText)RootView.findViewById(R.id.requirements);
         SharedPreferences settings=getActivity().getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
         email=settings.getString("email",null);
         if(email.equals(null)) {
@@ -153,6 +156,7 @@ public class AddProject extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
+
             if(tit.equals("")|| dur.equals("") || req.equals("") || des.equals("") || cat.equals("")){
                 z = "Please fill all the fields";
                 isSuccess=false;
@@ -179,4 +183,6 @@ public class AddProject extends Fragment {
             return z;
         }
     }
+
+
 }

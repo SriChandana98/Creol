@@ -15,28 +15,44 @@ import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
+
 public class Information extends AppCompatActivity {
-    Button save;
-    EditText email,name,college,skills,works;
+    BootstrapButton save;
+    BootstrapEditText email,emaild,name,college,skills,works;
     String uname,clg,sk,wk;
-    String eml;
+    String eml,eml2;
     public static final String PREFS_NAME = "EMAIL";
+    SharedPreferences s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        save=(Button)findViewById(R.id.saveinfo);
-        email=(EditText)findViewById(R.id.Email);
-        name=(EditText)findViewById(R.id.Name);
-        college=(EditText)findViewById(R.id.College);
-        skills=(EditText)findViewById(R.id.Skills);
-        works=(EditText)findViewById(R.id.Work);
+        save=(BootstrapButton)findViewById(R.id.saveInfo);
+        email=(BootstrapEditText)findViewById(R.id.Email);
+        emaild=(BootstrapEditText)findViewById(R.id.Emaild);
+        name=(BootstrapEditText)findViewById(R.id.Name);
+        college=(BootstrapEditText)findViewById(R.id.College);
+        skills=(BootstrapEditText)findViewById(R.id.Skills);
+        works=(BootstrapEditText)findViewById(R.id.Work);
+
+        /*s=getSharedPreferences(Information.PREFS_NAME,MODE_PRIVATE);
+        eml=s.getString("email",null);
+        email.setText(eml);*/
+        //email.setEnabled(false);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InsertInfo id=new InsertInfo();
-                id.execute("");
+                eml=email.getText().toString().trim();
+                eml2=emaild.getText().toString().trim();
+                if(eml==eml2) {
+                    InsertInfo id = new InsertInfo();
+                    id.execute("");
+                }
+                else
+                    Toast.makeText(Information.this,"check email fields",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -47,7 +63,7 @@ public class Information extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            eml=email.getText().toString().trim();
+
             uname = name.getText().toString().trim();
             clg = college.getText().toString().trim();
             sk= skills.getText().toString().trim();
@@ -62,12 +78,21 @@ public class Information extends AppCompatActivity {
         @Override
         protected void onPostExecute(String r) {
             if(isSuccess) {
+                SharedPreferences  settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                Editor editor=settings.edit();
+                editor.putString("reg",eml);
+                editor.commit();
                 Intent i=new Intent(Information.this,MainActivity.class);
                 startActivity(i);
                 finish();
             }
-            else
-                Toast.makeText(Information.this,z,Toast.LENGTH_LONG).show();
+            else {
+                Toast.makeText(Information.this, z, Toast.LENGTH_LONG).show();
+                SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                Editor editor = settings.edit();
+                editor.putString("reg", null);
+                editor.commit();
+            }
 
         }
 

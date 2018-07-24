@@ -1,114 +1,138 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.wise.vineetha.creol.Profile">
-    <RelativeLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg4"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.wise.vineetha.creol.Profile">
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/pemail"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Email"
+            android:inputType="textMultiLine"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:roundedCorners="true" />
 
 
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/pname"
+
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textMultiLine"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:roundedCorners="true" />
+
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/pcollege"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="College"
+            android:inputType="textMultiLine"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:roundedCorners="true" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/pskills"
+
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Skills"
+            android:inputType="textMultiLine"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:roundedCorners="true" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/pworks"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Works"
+            android:inputType="textMultiLine"
+            android:padding="1dp"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="md"
+            app:roundedCorners="true" />
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/pemail"
-                android:layout_width="fill_parent"
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="false"
-                android:focusable="true"
-                android:editable="false"
-                android:elevation="4dp"
-                android:hint="email"
-                android:padding="20dp"
-                android:textColor="@color/grey"/>
+                android:layout_margin="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:elevation="15dp"
+                android:text="Edit"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false" />
 
-            <EditText
-                android:id="@+id/pname"
-                android:layout_width="fill_parent"
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:focusable="true"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="false"
-                android:elevation="4dp"
-                android:hint="name"
-                android:padding="20dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/pcollege"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="false"
-                android:elevation="4dp"
-                android:hint="college"
-                android:padding="20dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/pskills"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="false"
-                android:elevation="4dp"
-                android:hint="skills"
-                android:padding="20dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/pworks"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="false"
-                android:elevation="4dp"
-                android:hint="works"
-                android:padding="20dp"
-                android:textColor="@color/black"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!--<Button
-                    android:id="@+id/logout"
-                    android:layout_width="115dp"
-                    android:layout_height="wrap_content"
-                    android:text="Logout" />-->
-
-                <Button
-                    android:id="@+id/edit"
-                    android:layout_width="115dp"
-                    android:layout_height="wrap_content"
-                    android:text="Edit" />
-
-                <Button
-                    android:id="@+id/save"
-                    android:layout_width="115dp"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:visibility="invisible"
-                    android:clickable="false"/>
-            </LinearLayout>
+                android:layout_margin="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:elevation="15dp"
+                android:text="Save"
+                android:visibility="invisible"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false" />
         </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+    </LinearLayout>
+</FrameLayout>

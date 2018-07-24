@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.wise.vineetha.creol.ProjectScreen"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@drawable/bg6">
 
 
     <TextView
@@ -15,6 +15,6 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="22sp" />
 </LinearLayout>

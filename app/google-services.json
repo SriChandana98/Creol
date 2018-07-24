@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "405351749670",
-    "firebase_url": "https://creol-196406.firebaseio.com",
-    "project_id": "creol-196406",
-    "storage_bucket": "creol-196406.appspot.com"
+    "project_number": "374498398414",
+    "firebase_url": "https://creol-1531925544170.firebaseio.com",
+    "project_id": "creol-1531925544170",
+    "storage_bucket": "creol-1531925544170.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:405351749670:android:d329107a673d915b",
+        "mobilesdk_app_id": "1:374498398414:android:d329107a673d915b",
         "android_client_info": {
           "package_name": "com.wise.vineetha.creol"
         }
       },
       "oauth_client": [
         {
-          "client_id": "405351749670-c7tl238tj30cenod1hogh6md9phqfea3.apps.googleusercontent.com",
+          "client_id": "374498398414-gllcksd7nf3torhk47ntbbvkv2rcr37c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.wise.vineetha.creol",
@@ -23,17 +23,13 @@
           }
         },
         {
-          "client_id": "405351749670-lp24fr5ndfus4suhjfehfpmmhlmnvsbb.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "405351749670-l4i6qhq9fue93hsjf4jauh2jskr9g6lm.apps.googleusercontent.com",
+          "client_id": "374498398414-bn6fcggc0d6kq4ejoq5vc12edvodpc6u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCcuve3fG1NLd1b2Bv-Ng2Uvs1xNNOMnDc"
+          "current_key": "AIzaSyD6oB7wRMBNj6DmrT74yHNfMmffAIY0iqE"
         }
       ],
       "services": {
@@ -44,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "405351749670-lp24fr5ndfus4suhjfehfpmmhlmnvsbb.apps.googleusercontent.com",
+              "client_id": "374498398414-bn6fcggc0d6kq4ejoq5vc12edvodpc6u.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

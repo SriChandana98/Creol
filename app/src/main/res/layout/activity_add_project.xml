@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -147,4 +147,114 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg4"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.wise.vineetha.creol.AddProject">
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="text"
+        android:focusable="true"
+        app:bootstrapBrand="info"
+        app:bootstrapSize="md"
+        app:roundedCorners="true"  />
+
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/description"
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="text"
+        app:bootstrapBrand="info"
+        app:bootstrapSize="md"
+        app:roundedCorners="true" />
+
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/requirements"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Requirements"
+        android:inputType="text"
+        app:bootstrapBrand="info"
+        app:bootstrapSize="md"
+        app:roundedCorners="true" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/duration"
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Duration"
+        android:inputType="text"
+        app:bootstrapBrand="info"
+        app:bootstrapSize="md"
+        app:roundedCorners="true" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Category"
+        android:inputType="text"
+        android:padding="1dp"
+        app:bootstrapBrand="info"
+        app:bootstrapSize="md"
+        app:roundedCorners="true" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:elevation="15dp"
+            android:text="Add Project"
+            app:bootstrapBrand="success"
+            app:bootstrapSize="lg"
+            app:buttonMode="regular"
+            app:roundedCorners="true"
+            app:showOutline="false" />
+
+</LinearLayout>

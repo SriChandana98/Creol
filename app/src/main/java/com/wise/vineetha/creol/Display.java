@@ -8,15 +8,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Display extends AppCompatActivity {
-    Button dlt,sv,edt;
-    TextView name,description,requirements,category,duration;
+    BootstrapButton dlt,sv,edt;
+    BootstrapEditText name,description,requirements,category,duration;
     String email,pname,pdesc;
     private static final String TAG;
 
@@ -29,8 +33,7 @@ public class Display extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         Log.i(TAG, "onCreate: started");
         getIncomingIntent();
-
-
+        sv.setVisibility(View.INVISIBLE);
         edt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +107,8 @@ public class Display extends AppCompatActivity {
                 }
                 if(s) {
                     Toast.makeText(Display.this,"Deletion Successful", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(Display.this, MainActivity.class));
+                    //startActivity(new Intent(Display.this, MainActivity.class));
+
                 }
             }
         });
@@ -122,14 +126,14 @@ public class Display extends AppCompatActivity {
     }
 
     private void setIntent(String pname, String pdesc,int i) {
-        name = (TextView) findViewById(R.id.ptitle);
-        description = (TextView) findViewById(R.id.pdes);
-        requirements=(TextView)findViewById(R.id.preq);
-        category=(TextView)findViewById(R.id.pcat);
-        duration=(TextView)findViewById(R.id.pdur);
-        dlt=(Button)findViewById(R.id.delete);
-        edt=(Button)findViewById(R.id.pedit);
-        sv=(Button)findViewById(R.id.psave);
+        name = (BootstrapEditText) findViewById(R.id.ptitle);
+        description = (BootstrapEditText) findViewById(R.id.pdes);
+        requirements=(BootstrapEditText)findViewById(R.id.preq);
+        category=(BootstrapEditText)findViewById(R.id.pcat);
+        duration=(BootstrapEditText)findViewById(R.id.pdur);
+        dlt=(BootstrapButton)findViewById(R.id.delete);
+        edt=(BootstrapButton)findViewById(R.id.pedit);
+        sv=(BootstrapButton)findViewById(R.id.psave);
         settings=this.getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
         email=settings.getString("email",null);
         description.setClickable(false);
@@ -154,6 +158,7 @@ public class Display extends AppCompatActivity {
         }
         name.setText(pname);
         description.setText(pdesc);
+        name.setEnabled(false);
         description.setEnabled(false);
         requirements.setEnabled(false);
         category.setEnabled(false);

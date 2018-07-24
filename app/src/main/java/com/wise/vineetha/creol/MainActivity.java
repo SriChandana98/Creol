@@ -1,6 +1,10 @@
 package com.wise.vineetha.creol;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,10 +16,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,AddProject.OnFragmentInteractionListener,ProjectFeed.OnFragmentInteractionListener,Profile.OnFragmentInteractionListener {
     Toolbar toolbar;
+    private static long back_pressed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +58,16 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            if (back_pressed + 2000 > System.currentTimeMillis()) finishAffinity();
+            else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+            {
+                back_pressed = System.currentTimeMillis();
+                //super.onBackPressed();
+            }
+            //finish();
         }
+
     }
 
     @Override
@@ -90,6 +112,15 @@ public class MainActivity extends AppCompatActivity
                 fragment=ProjectFeed.newInstance(1);
                 toolbar.setTitle("Your Projects");
                 break;
+            case R.id.nav_logout:
+                SharedPreferences  settings = getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=settings.edit();
+                editor.putString("email",null);
+                editor.commit();
+                Intent intent=new Intent(MainActivity.this,Home.class);
+                //finish();
+                startActivity(intent);
+                break;
 
         }
         if(fragment!=null){
@@ -115,3 +146,5 @@ public class MainActivity extends AppCompatActivity
 
     }
 }
+
+

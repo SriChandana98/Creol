@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.wise.vineetha.creol.Home">
 
     <ImageView
@@ -35,6 +36,5 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
     </com.google.android.gms.common.SignInButton>
-
 
 </android.support.constraint.ConstraintLayout>
