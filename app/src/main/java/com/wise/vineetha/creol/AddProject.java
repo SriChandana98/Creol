@@ -1,5 +1,6 @@
 package com.wise.vineetha.creol;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -37,6 +39,7 @@ public class AddProject extends Fragment {
     BootstrapEditText title,description,requirements,duration,category;
     String tit,des,dur,cat,req;
     String email;
+    ProgressDialog pd;
 
     public AddProject() {
         // Required empty public constructor
@@ -142,11 +145,16 @@ public class AddProject extends Fragment {
             des = description.getText().toString().trim();
             cat = category.getText().toString().trim();
             req=requirements.getText().toString().trim();
+            pd=new ProgressDialog(getContext());
+            pd.setMessage("uploading project");
+            pd.show();
         }
 
         @Override
         protected void onPostExecute(String r) {
+            pd.dismiss();
             if(isSuccess) {
+
                startActivity(new Intent(getActivity(),MainActivity.class));
             }
             else

@@ -107,7 +107,7 @@ public class Display extends AppCompatActivity {
                 }
                 if(s) {
                     Toast.makeText(Display.this,"Deletion Successful", Toast.LENGTH_LONG).show();
-                    //startActivity(new Intent(Display.this, MainActivity.class));
+                    startActivity(new Intent(Display.this, MainActivity.class));
 
                 }
             }
@@ -147,8 +147,8 @@ public class Display extends AppCompatActivity {
                 ResultSet rs = stmt.executeQuery(query);
                 if (rs.next()) {
                     requirements.setText(rs.getString(4));
-                    category.setText(rs.getString(5));
-                    duration.setText(rs.getString(6));
+                    category.setText(rs.getString(6));
+                    duration.setText(rs.getString(5));
                 }
             }
         } catch (Exception ex) {

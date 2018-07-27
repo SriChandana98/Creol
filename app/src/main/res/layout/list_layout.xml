@@ -7,11 +7,12 @@
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="136dp"
         card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="5dp"
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="1dp"
+        card_view:cardMaxElevation="1dp"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -29,11 +30,12 @@
                 android:tag="image_tag" />-->
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_weight="2"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
 
                 <TextView
                     android:id="@+id/textViewName"
@@ -50,7 +52,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-
+                    android:textSize="15sp"
                     android:text="Project description"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 

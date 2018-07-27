@@ -47,7 +47,7 @@ public class Information extends AppCompatActivity {
             public void onClick(View view) {
                 eml=email.getText().toString().trim();
                 eml2=emaild.getText().toString().trim();
-                if(eml==eml2) {
+                if(eml.equals(eml2)) {
                     InsertInfo id = new InsertInfo();
                     id.execute("");
                 }
