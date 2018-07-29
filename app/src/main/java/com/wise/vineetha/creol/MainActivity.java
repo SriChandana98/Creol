@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_your_proj:
                 fragment=ProjectFeed.newInstance(1);
-                toolbar.setTitle("Your Projects");
+                toolbar.setTitle("My Projects");
                 break;
             case R.id.nav_logout:
                 SharedPreferences  settings = getSharedPreferences(Information.PREFS_NAME, Context.MODE_PRIVATE);
